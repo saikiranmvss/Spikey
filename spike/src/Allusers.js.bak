@@ -1,0 +1,72 @@
+import {  useState , useEffect } from 'react';
+import $ from 'jquery';
+import { Link } from 'react-router-dom';
+import './Allusers.css';
+import { useNavigate ,useSearchParams , useLocation} from "react-router-dom";
+import axios from "axios";
+
+var id='';
+function Allusers(){          
+  const {state} = useLocation();
+  const navigate = useNavigate();
+  const [user,userState]= useState([]);
+  // const [searchParams, setSearchParams] = useSearchParams();
+   useEffect(() => {        
+    // if(state!=null){
+    //  const { id } = state;
+     if(state!=null){
+        const { ids } = state;
+        $('#userids').val(ids);
+     }else{
+
+     }
+     var id= $('#userids').val();
+
+     if(id=='' || id==undefined || id==null){
+      navigate('/')
+     }
+
+    //  console.log(id);
+    // }else{
+    //   id = searchParams.get('id'); 
+    //   console.log(id);
+    // }   
+    $('.mobile-bottom-nav').show();
+    axios.post('http://192.168.0.144:9999/allusersdata',{id:localStorage.getItem('userIds')}).then((response) => {    
+      // setIsLoading(false);
+      localStorage.getItem("userIds");
+      if(response.data.allUsers!==''){
+        userState(response.data.allUsers);
+      }else{
+      // navigate('/');
+      }      
+
+    });
+  }, []);
+
+    return (   
+<div className="container alluser_container" style={{position:"relative",height: "93vh",overflow: "scroll"}}>
+<div className="row" >
+{user.map(function (item,index){
+        return <div key={item.user_id} className="col-12 tiles">
+          <Link className="allusers_link clearfix row"
+        to={{
+          pathname:"/Chatwindow",
+          search: "?id="+item.user_id, 
+          state: { fromDashboard: true }
+        }}>  
+          <div className="col-3">
+            <div className="pro_pics" style={{backgroundImage: 'url('+process.env.PUBLIC_URL+'"sample.jpeg")'}}></div>             
+          </div>
+          <div className="col-6 line-space msg-text"><strong >{item.name}</strong><p>{item.msg_content}</p></div>
+          <div className="col-3 line-space"><p>Just now</p></div>
+
+        </Link>
+      </div>
+       })}
+</div>
+</div>
+    )
+}
+
+export default Allusers;

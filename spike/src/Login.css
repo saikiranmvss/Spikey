@@ -1,0 +1,22 @@
+body{
+    background:#f4f4f4;    
+    font-family: 'Helvetica';
+    cursor: pointer;
+}
+.login-form input{
+width: 100%;
+border-radius: 5px;
+padding: 15px;
+}
+.form-fields{
+margin-top: 0.7rem;
+margin-bottom: 0.7rem;
+}
+.title-text{
+    font-size: 20px;
+    font-weight: 700;
+    color: rgb(228 183 116);
+    letter-spacing: 0.6rem;
+    display: flex;
+    justify-content: center;
+}

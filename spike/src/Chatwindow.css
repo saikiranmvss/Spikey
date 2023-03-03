@@ -1,0 +1,35 @@
+/* .tiles{
+    font-size: 22px;
+    display: flex;
+    align-items: baseline;
+}
+
+.settings_content{
+    margin: 30px;
+}
+
+.chat-body{
+    position: relative;
+    height: 100%;
+    overflow: scroll !important;
+    overflow-anchor: none;
+    touch-action: auto;
+    padding: unset !important;
+}
+
+.yourimg{
+    width:45px;
+    height:100%;
+}
+
+.yourmessage{
+    background-color:aliceblue;
+}
+
+.card-header *{
+    padding-left:5px;
+}
+
+.received_ms{
+    padding-right: 10px;
+} */
